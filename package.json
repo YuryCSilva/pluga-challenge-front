@@ -4,19 +4,40 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+     "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prepare": "husky",
+    "lint": "eslint . --ext ts,tsx,js,jsx --max-warnings 0",
+    "test": "echo \"Nenhum teste configurado\""
+  },
+  "lint-staged": {
+    "*.{html,css,scss,ts,js,tsx,jsx,json,md}": "prettier --write",
+    "*.{html,css,scss,ts,js,tsx,jsx}": "eslint --no-warn-ignored --max-warnings 0 --fix"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "next": "^16.0.4",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.11",
-    "@vitejs/plugin-react": "^4.5.2",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "daisyui": "^5.0.43",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.4",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.6.2",
+    "prettier-plugin-classnames": "^0.8.5",
+    "prettier-plugin-merge": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.11",
-    "vite": "^7.0.0"
+    "typescript": "^5.9.3"
   }
 }

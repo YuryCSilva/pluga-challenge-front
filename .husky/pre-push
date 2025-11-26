@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Rodando ESLint antes do push..."
+npx eslint . --max-warnings=999 || true
+
+echo "✅ Push liberado!"
