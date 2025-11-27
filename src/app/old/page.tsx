@@ -25,6 +25,8 @@ export default function Home() {
         acc[app.app_id] = app;
         return acc;
       }, {});
+
+      console.log(appsByAppId)
       const storedLastSelectedAppIds =
         JSON.parse(localStorage.getItem('lastSelectedApps') as any) || [];
       setLastSelectedApps(
