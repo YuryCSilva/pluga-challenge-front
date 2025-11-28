@@ -2,7 +2,7 @@ name: CI - Pluga Challenge Front
 
 on:
   push:
-    branches:
+    branches: 
       - '**'
 jobs:
   test:
@@ -48,7 +48,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: amondnet/vercel-action@v25
         with:
-          vercel-token: ${{ secrets.Vun7eAGJ5P1EOUh2SeIrWhDz }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: ./
