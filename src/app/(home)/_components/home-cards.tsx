@@ -2,11 +2,14 @@
 import { useFilterAppsContext } from '@/src/app/(home)/_contexts/apps-pluga/filter-apps-context';
 import { Pagination } from '@/src/components/_behavior/pagination';
 import SadManIcon from '@/src/components/_ui/icons/sad-man';
-import Image from 'next/image';
 import { useSelectedAppsContext } from '@/src/app/(home)/_contexts/apps-pluga/selected-apps-context';
 import HomeDialog from './home-dialog-selected-app';
 import { useRef } from 'react';
 import { AppPlugaResponse } from '@/src/app/(home)/types/apps-pluga-response';
+import Card from '@/src/components/_ui/card';
+import CardImageContainer from '@/src/components/_ui/card/card-image-container';
+import CardImage from '@/src/components/_ui/card/card-image';
+import CardBody from '@/src/components/_ui/card/card-body';
 
 function HomeNoCardsFound({ search }: { search: string }) {
   return (
@@ -41,28 +44,25 @@ export default function HomeCards() {
         initialPage={1}
         itemsPerPage={12}
         render={(items) => (
-          <div className='mb-6 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+          <div
+            className='mb-6 grid grid-cols-2 gap-6 lg:grid-cols-3
+              xl:grid-cols-4'
+          >
             {items.map((app) => (
-              <button
-                type='button'
-                key={app.app_id}
-                onClick={() => onSelectedApp(app)}
-                className='group card cursor-pointer bg-base-100 shadow-sm
-                  transition card-sm hover:shadow-lg'
-              >
-                <figure style={{ backgroundColor: app.color }} className='p-6'>
-                  <Image
+              <Card key={app.app_id} onClick={() => onSelectedApp(app)}>
+                <CardImageContainer style={{ backgroundColor: app.color }}>
+                  <CardImage
                     src={app.icon}
                     alt={app.name}
                     width={48}
                     height={48}
-                    className='w-auto max-w-16 transition group-hover:scale-110'
+                    className='w-16 max-w-16'
                   />
-                </figure>
-                <div className='card-body min-h-17 justify-center text-center'>
+                </CardImageContainer>
+                <CardBody>
                   <h4>{app.name}</h4>
-                </div>
-              </button>
+                </CardBody>
+              </Card>
             ))}
           </div>
         )}
