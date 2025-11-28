@@ -2,7 +2,7 @@ name: CI - Pluga Challenge Front
 
 on:
   push:
-    branches: 
+    branches:
       - '**'
 jobs:
   test:
@@ -44,20 +44,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to Vercel
         if: github.ref == 'refs/heads/main'
+        uses: amondnet/vercel-action@v25
         with:
-          path: ./out
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    permissions:
-      pages: write
-      id-token: write
-
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+          vercel-token: ${{ secrets.Vun7eAGJ5P1EOUh2SeIrWhDz }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          prod: true
