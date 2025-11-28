@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "test": "jest",
+    "dev": "npm run test & next dev",
+    "build": "npm run test & next build",
+    "start": "npm run test & next start",
     "prepare": "husky",
-    "lint": "eslint . --ext ts,tsx,js,jsx --max-warnings 0",
-    "test": "jest"
+    "lint": "eslint . --ext ts,tsx,js,jsx --max-warnings 0"
   },
   "lint-staged": {
     "*.{html,css,scss,ts,js,tsx,jsx,json,md}": "prettier --write",
