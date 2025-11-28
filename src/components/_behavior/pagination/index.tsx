@@ -1,9 +1,8 @@
 'use client';
 import { cn } from '@/src/shared/utils/cn';
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import ArrowLeftIcon from '@/src/components/_ui/icons/arrow-left';
 import ArrowRightIcon from '@/src/components/_ui/icons/arrow-right';
-import { useDeviceType } from '@/src/shared/hooks/useDeviceType';
 import usePagination from './usePagination';
 
 export type PaginationProps<T> = {
@@ -13,6 +12,10 @@ export type PaginationProps<T> = {
   initialPage?: number;
   className?: string;
   render: (items: T[], page: number) => React.ReactNode;
+};
+
+const Button = ({ className, ...props }: React.ComponentProps<'button'>) => {
+  return <button className={cn('btn join-item', className)} {...props} />;
 };
 
 export function Pagination<T>({
@@ -38,29 +41,27 @@ export function Pagination<T>({
       {render(currentItems, currentPage)}
       <div className='text-center'>
         <div className='join'>
-          <button
+          <Button
             onClick={prevPage}
-            className={`btn join-item
-              ${currentPage === 1 ? 'btn-disabled' : ''}`}
+            className={currentPage === 1 ? 'btn-disabled' : ''}
           >
             <ArrowLeftIcon />
-          </button>
+          </Button>
           {pages.map((i) => (
-            <button
+            <Button
               key={`page-${i}`}
               onClick={() => setCurrentPage(i)}
-              className={`btn join-item ${i == currentPage ? 'btn-active' : ''}`}
+              className={i == currentPage ? 'btn-active' : ''}
             >
               {i}
-            </button>
+            </Button>
           ))}
-          <button
+          <Button
             onClick={nextPage}
-            className={`btn join-item
-              ${currentPage === totalPages ? 'btn-disabled' : ''}`}
+            className={currentPage == totalPages ? 'btn-disabled' : ''}
           >
             <ArrowRightIcon />
-          </button>
+          </Button>
         </div>
       </div>
     </div>

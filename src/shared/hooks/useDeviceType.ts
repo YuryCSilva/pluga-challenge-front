@@ -17,15 +17,14 @@ export function useDeviceType(): useDeviceTypeReturn {
     return 'DESKTOP';
   };
 
-  const [device, setDevice] = useState<DeviceType>(
-    typeof window !== 'undefined' ? getDeviceType() : 'MOBILE'
-  );
+  const [device, setDevice] = useState<DeviceType>('MOBILE');
 
   const isMobile = device == 'MOBILE';
   const isTablet = device == 'TABLET';
   const isDesktop = device == 'DESKTOP';
 
   useEffect(() => {
+    setDevice(getDeviceType());
     const handleResize = () => setDevice(getDeviceType());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
