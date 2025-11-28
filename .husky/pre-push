@@ -1,7 +1,18 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "🔍 Rodando ESLint antes do push..."
-npx eslint . --max-warnings=999 || true
+echo "🔍 Rodando ESLint..."
+npx eslint . --quiet
+ESLINT_STATUS=$?
 
-echo "✅ Push liberado!"
+echo "🧪 Rodando testes Jest..."
+npx jest --ci --passWithNoTests
+JEST_STATUS=$?
+
+if [ $ESLINT_STATUS -ne 0 ] || [ $JEST_STATUS -ne 0 ]; then
+  echo "❌ Push bloqueado! Corrija os erros antes de subir."
+  exit 1
+fi
+
+echo "✅ Tudo certo! Push liberado."
+exit 0
