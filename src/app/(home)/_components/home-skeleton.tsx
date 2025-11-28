@@ -21,7 +21,7 @@ export default function HomeSkeleton() {
             <div className='h-24 w-full bg-gray-300/60' />
 
             {/* Text */}
-            <div className='mt-4 ml-4 h-6 w-24 rounded bg-gray-300/60' />
+            <div className='h-6 w-24 m-auto rounded bg-gray-300/60' />
           </div>
         ))}
       </div>
